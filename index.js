@@ -36,6 +36,7 @@ app.post('/webhook', function (req, res) {
 
 // generic function sending messages
 function welcomeMessage() {
+  console.log('aaaaaaaa');
   request({
     url: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
@@ -56,6 +57,7 @@ function welcomeMessage() {
 };
 
 function sendMessage(recipientId) {
+  console.log('bbbbbbbbbb');
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {
@@ -66,34 +68,14 @@ function sendMessage(recipientId) {
       recipient: {
         id: recipientId
       },
-      "message": {
-        "attachment": {
-          "type": "template",
-          "payload": {
-            "template_type": "generic",
-            "elements": [
+      message: {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: [
                {
-                 "title": "Welcome to Peter\'s Hats",
-                 "image_url": "http://projects.2626.today/fbbot/welcome.jpg",
-                 "subtitle": "We\'ve got the right hat for everyone.",
-                 "default_action": {
-                   "type": "web_url",
-                   "url": "http://projects.2626.today/",
-                   "messenger_extensions": true,
-                   "webview_height_ratio": "tall",
-                   "fallback_url": "http://visit.2626.today/"
-                 },
-                 "buttons": [
-                   {
-                     "type": "web_url",
-                     "url": "http://visit.2626.today/",
-                     "title": "View Website"
-                   }, {
-                     "type": "postback",
-                     "title": "Start Chatting",
-                     "payload": "DEVELOPER_DEFINED_PAYLOAD"
-                   }
-                 ]
+                 title: "Random text",
                }
             ]
           }

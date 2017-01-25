@@ -1,10 +1,11 @@
 {
   "name": "2626fbbot",
   "version": "1.0.0",
-  "description": "",
+  "description": "2626 Creative Studio FB Bot",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Akshay Jain",
   "license": "ISC",

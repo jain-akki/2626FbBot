@@ -58,7 +58,7 @@ function welcomeMessage() {
 function sendMessage(recipientId) {
   request({
     method: 'POST',
-    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {
       access_token: process.env.PAGE_ACCESS_TOKEN
     },

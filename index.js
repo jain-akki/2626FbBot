@@ -27,9 +27,7 @@ app.post('/webhook', function (req, res) {
   for (i = 0; i < events.length; i++) {
     var event = events[i];
     if (event.message && event.message.text) {
-      sendMessage(event.sender.id, {
-         text: "Hi, {{user_first_name}}! It’s nice to meet you."
-      });
+      sendMessage(event.sender.id);
       sendGenericMessage(event.sender.id);
     }
   }
@@ -37,14 +35,12 @@ app.post('/webhook', function (req, res) {
 });
 
 // generic function sending messages
-function sendMessage(recipientId, message) {
+function sendMessage(recipientId) {
   request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
+    url: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
     method: 'POST',
     json: {
-      recipient: { id: recipientId },
-      message: message,
       setting_type: "greeting",
       greeting: {
         text: "Hi, {{user_first_name}}! It’s nice to meet you."

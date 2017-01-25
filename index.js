@@ -28,9 +28,9 @@ app.post('/webhook', function (req, res) {
     var event = events[i];
     if (event.message && event.message.text) {
       sendMessage(event.sender.id, {
-        "setting_type": "greeting",
-        "greeting": {
-          "text": "Hi, {{user_first_name}}! It’s nice to meet you."
+        setting_type: "greeting",
+        greeting: {
+          text: "Hi, {{user_first_name}}! It’s nice to meet you."
         }
       });
       sendGenericMessage(event.sender.id);

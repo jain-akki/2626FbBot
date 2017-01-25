@@ -72,7 +72,7 @@ function sendMessage(recipientId) {
             elements: {
               "title": "Your Title",
               "subtitle": "Welcome to my messenger bot",
-              "image_url": "https://mybot.example.com/images/logo.jpg"
+              "image_url": "http://projects.2626.today/fbbot/welcome.jpg"
             }
           }
         }

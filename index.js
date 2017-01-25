@@ -23,6 +23,7 @@ app.get('/webhook', function (req, res) {
 
 // handler receiving messages
 app.post('/webhook', function (req, res) {
+  welcomeMessage();
   var events = req.body.entry[0].messaging;
   for (i = 0; i < events.length; i++) {
     var event = events[i];
@@ -34,7 +35,7 @@ app.post('/webhook', function (req, res) {
 });
 
 // generic function sending messages
-function sendMessage(recipientId) {
+function welcomeMessage() {
   request({
     url: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
@@ -52,36 +53,38 @@ function sendMessage(recipientId) {
         console.log('Error: ', response.body.error);
       }
     });
-
-  //request({
-  //  method: 'POST',
-  //  uri: 'https://graph.facebook.com/v2.6/me/messages',
-  //  qs: {
-  //    access_token: process.env.PAGE_ACCESS_TOKEN
-  //  },
-  //  json: {
-  //    recipient: {
-  //      id: recipientId
-  //    },
-  //    message: {
-  //      attachment: {
-  //        type: "template",
-  //        payload: {
-  //          template_type: "generic",
-  //          elements: {
-  //            title: "Your Title",
-  //            subtitle: "Welcome to my messenger bot",
-  //            image_url: "http://projects.2626.today/fbbot/welcome.jpg"
-  //          }
-  //        }
-  //      }
-  //    }
-  //  }
-  //}, function (error, response, body) {
-  //  if (error) {
-  //    console.log('Error sending message: ', error);
-  //  } else if (response.body.error) {
-  //    console.log('Error: ', response.body.error);
-  //  }
-  //});
 };
+
+function sendMessage(recipientId) {
+  request({
+    method: 'POST',
+    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {
+      access_token: process.env.PAGE_ACCESS_TOKEN
+    },
+    json: {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: {
+              title: "Your Title",
+              subtitle: "Welcome to my messenger bot",
+              image_url: "http://projects.2626.today/fbbot/welcome.jpg"
+            }
+          }
+        }
+      }
+    }
+  }, function (error, response, body) {
+    if (error) {
+      console.log('Error sending message: ', error);
+    } else if (response.body.error) {
+      console.log('Error: ', response.body.error);
+    }
+  });
+}

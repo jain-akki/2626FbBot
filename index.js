@@ -76,6 +76,7 @@ function sendMessage(recipientId) {
             elements: [
                {
                  title: "Random text",
+                 image_url: "http://projects.2626.today/fbbot/welcome.jpg"
                }
             ]
           }

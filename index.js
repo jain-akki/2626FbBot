@@ -57,43 +57,45 @@ function welcomeMessage() {
 
 function sendMessage(recipientId) {
   request({
-    method: 'POST',
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {
       access_token: process.env.PAGE_ACCESS_TOKEN
     },
+    method: 'POST',
     json: {
       recipient: {
         id: recipientId
       },
-      message: {
-        attachment: {
-          type: "template",
-          payload: {
-            template_type: "generic",
-            elements: {
-              title: "Your Title",
-              image_url: "http://projects.2626.today/fbbot/welcome.jpg",
-              subtitle: "Welcome to my messenger bot",
-              default_action: {
-                type: "web_url",
-                url: "https://peterssendreceiveapp.ngrok.io/view?item=103",
-                messenger_extensions: true,
-                webview_height_ratio: "tall",
-                fallback_url: "https://peterssendreceiveapp.ngrok.io/"
-              },
-              buttons: [
-                {
-                  type: "web_url",
-                  url: "https://petersfancybrownhats.com",
-                  title: "View Website"
-                }, {
-                  type: "postback",
-                  title: "Start Chatting",
-                  payload: "DEVELOPER_DEFINED_PAYLOAD"
-                }
-              ]
-            }
+      "message": {
+        "attachment": {
+          "type": "template",
+          "payload": {
+            "template_type": "generic",
+            "elements": [
+               {
+                 "title": "Welcome to Peter\'s Hats",
+                 "image_url": "http://projects.2626.today/fbbot/welcome.jpg",
+                 "subtitle": "We\'ve got the right hat for everyone.",
+                 "default_action": {
+                   "type": "web_url",
+                   "url": "http://projects.2626.today/",
+                   "messenger_extensions": true,
+                   "webview_height_ratio": "tall",
+                   "fallback_url": "http://visit.2626.today/"
+                 },
+                 "buttons": [
+                   {
+                     "type": "web_url",
+                     "url": "http://visit.2626.today/",
+                     "title": "View Website"
+                   }, {
+                     "type": "postback",
+                     "title": "Start Chatting",
+                     "payload": "DEVELOPER_DEFINED_PAYLOAD"
+                   }
+                 ]
+               }
+            ]
           }
         }
       }

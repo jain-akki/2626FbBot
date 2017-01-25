@@ -73,8 +73,26 @@ function sendMessage(recipientId) {
             template_type: "generic",
             elements: {
               title: "Your Title",
+              image_url: "http://projects.2626.today/fbbot/welcome.jpg",
               subtitle: "Welcome to my messenger bot",
-              image_url: "http://projects.2626.today/fbbot/welcome.jpg"
+              default_action: {
+                type: "web_url",
+                url: "https://peterssendreceiveapp.ngrok.io/view?item=103",
+                messenger_extensions: true,
+                webview_height_ratio: "tall",
+                fallback_url: "https://peterssendreceiveapp.ngrok.io/"
+              },
+              buttons: [
+                {
+                  type: "web_url",
+                  url: "https://petersfancybrownhats.com",
+                  title: "View Website"
+                }, {
+                  type: "postback",
+                  title: "Start Chatting",
+                  payload: "DEVELOPER_DEFINED_PAYLOAD"
+                }
+              ]
             }
           }
         }

@@ -37,7 +37,7 @@ app.post('/webhook', function (req, res) {
 
 // generic function sending messages
 function getStartMessage() {
-  console.log('aaaaaaaa');
+  console.log('qqqqqqq');
   request({
     url: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
@@ -47,7 +47,23 @@ function getStartMessage() {
       thread_state: "new_thread",
       call_to_actions: [
         {
-          payload: "USER_DEFINED_PAYLOAD"
+          payload: {
+            template_type: "generic",
+            elements: [
+               {
+                 title: "Title",
+                 subtitle: "subtitle",
+                 image_url: "http://projects.2626.today/fbbot/welcome.jpg",
+                 "buttons": [
+                    {
+                      "type": "web_url",
+                      "url": "http://visit.2626.today/",
+                      "title": "View Website"
+                    }
+                 ]
+               }
+            ]
+          }
         }
       ]
     }

@@ -70,9 +70,9 @@ function sendMessage(recipientId) {
           payload: {
             template_type: "generic",
             elements: {
-              "title": "Your Title",
-              "subtitle": "Welcome to my messenger bot",
-              "image_url": "http://projects.2626.today/fbbot/welcome.jpg"
+              title: "Your Title",
+              subtitle: "Welcome to my messenger bot",
+              image_url: "http://projects.2626.today/fbbot/welcome.jpg"
             }
           }
         }

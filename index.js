@@ -47,13 +47,13 @@ function welcomeMessage() {
         text: "Hi, {{user_first_name}}! It’s nice to meet you."
       }
     }
-    }, function (error, response, body) {
-      if (error) {
-        console.log('Error sending message: ', error);
-      } else if (response.body.error) {
-        console.log('Error: ', response.body.error);
-      }
-    });
+  }, function (error, response, body) {
+    if (error) {
+      console.log('Error sending message: ', error);
+    } else if (response.body.error) {
+      console.log('Error: ', response.body.error);
+    }
+  });
 };
 
 function sendMessage(recipientId) {
@@ -75,8 +75,16 @@ function sendMessage(recipientId) {
             template_type: "generic",
             elements: [
                {
-                 title: "Random text",
-                 image_url: "http://projects.2626.today/fbbot/welcome.jpg"
+                 title: "Title",
+                 subtitle: "subtitle",
+                 image_url: "http://projects.2626.today/fbbot/welcome.jpg",
+                 "buttons": [
+                    {
+                      "type": "web_url",
+                      "url": "http://visit.2626.today/",
+                      "title": "View Website"
+                    }
+                 ]
                }
             ]
           }

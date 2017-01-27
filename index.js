@@ -35,49 +35,7 @@ app.post('/webhook', function (req, res) {
   res.sendStatus(200);
 });
 
-// generic function sending messages
-function getStartMessage() {
-  console.log('qqqqqqq');
-  request({
-    url: 'https://graph.facebook.com/v2.6/me/thread_settings',
-    qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
-    method: 'POST',
-    json: {
-      setting_type: "call_to_actions",
-      thread_state: "new_thread",
-      call_to_actions: [
-        {
-          payload: {
-            template_type: "generic",
-            elements: [
-               {
-                 title: "Title",
-                 subtitle: "subtitle",
-                 image_url: "http://projects.2626.today/fbbot/welcome.jpg",
-                 "buttons": [
-                    {
-                      "type": "web_url",
-                      "url": "http://visit.2626.today/",
-                      "title": "View Website"
-                    }
-                 ]
-               }
-            ]
-          }
-        }
-      ]
-    }
-  }, function (error, response, body) {
-    if (error) {
-      console.log('Error sending message: ', error);
-    } else if (response.body.error) {
-      console.log('Error: ', response.body.error);
-    }
-  });
-};
-
 function welcomeMessage() {
-  console.log('aaaaaaaa');
   request({
     url: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
@@ -97,8 +55,8 @@ function welcomeMessage() {
   });
 };
 
-function sendMessage(recipientId) {
-  console.log('bbbbbbbbbb');
+// generic function sending messages
+function getStartMessage() {
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {
@@ -106,9 +64,6 @@ function sendMessage(recipientId) {
     },
     method: 'POST',
     json: {
-      recipient: {
-        id: recipientId
-      },
       message: {
         attachment: {
           type: "template",
@@ -139,4 +94,8 @@ function sendMessage(recipientId) {
       console.log('Error: ', response.body.error);
     }
   });
+};
+
+function sendMessage(recipientId) {
+  console.log('sendMessage Function');
 }
